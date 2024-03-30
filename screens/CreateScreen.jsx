@@ -1,12 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useContext } from "react";
+import BlogPostForm from "../components/BlogPostForm";
+import { Context } from "../context/BlogContext";
 
-export default function CreateScreen() {
-  return (
-    <View>
-      <Text>CreateScreen</Text>
-    </View>
-  )
+export default function CreateScreen({navigation}) {
+  const { addBlogPost } = useContext(Context);
+
+  const onSubmit = (title, content) => {
+    addBlogPost(title, content, () => navigation.navigate("Index"));
+  };
+
+  return <BlogPostForm isEditable={false} onSubmit={onSubmit} />;
 }
-
-const styles = StyleSheet.create({})
